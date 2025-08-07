@@ -7,10 +7,10 @@ export const Route = createFileRoute("/_layout")({
 
 function RouteComponent() {
   return (
-    <div className="h-screen grid grid-cols-1 bg-gray-100 lg:grid-cols-[20%_1fr]">
+    <div className="h-screen lg:grid bg-gray-100 lg:grid-cols-[20%_1fr]">
       <Sidebar />
 
-      <main className="flex-1 p-4 overflow-y-scroll">
+      <main className=" p-4  w-full h-full">
         <Outlet />
       </main>
     </div>

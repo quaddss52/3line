@@ -118,3 +118,20 @@
     @apply bg-background text-foreground;
   }
 }
+@layer base {
+  :root {
+    --primary-50: #d6bbfb;
+    --primary-100: #9e77ed;
+    --primary-500: #6941c6;
+    --primary-600: #53389e;
+    --primary-700: #7f56d9;
+    --grey-50: #f9fafb;
+    --grey-100: #f2f4f7;
+    --grey-200: #e4e7ec;
+    --grey-300: #d0d5dd;
+    --grey-400: #667085;
+    --grey-500: #475467;
+    --grey-600: #344054;
+    --grey-700: #101828;
+  }
+}

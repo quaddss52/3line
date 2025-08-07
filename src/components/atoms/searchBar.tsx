@@ -16,14 +16,13 @@ export default function SearchComponent() {
       <div
         className={`relative bg-white rounded-lg border-2 transition-all duration-300 ${
           isFocused
-            ? "border-purple-300 shadow-lg"
+            ? "border-purple-300 shadow-md"
             : "border-purple-200 shadow-sm"
         }`}
       >
-        <div className="flex items-center px-2 py-2">
+        <div className="flex items-center px-2 py-[8px]">
           <Search
             size={12}
-            // absoluteStrokeWidth
             className={` mr-2 transition-colors duration-300 ${
               isFocused ? "text-primary-700" : "text-grey-700"
             }`}
@@ -35,7 +34,7 @@ export default function SearchComponent() {
             onChange={(e) => setSearchValue(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            className="flex-1 text-gray-700 placeholder-gray-400 bg-transparent outline-none text-sm"
+            className="flex-1 text-gray-700 placeholder-gray-400 bg-transparent outline-none text-xs"
           />
         </div>
       </div>
