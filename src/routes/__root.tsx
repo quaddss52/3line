@@ -8,6 +8,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -20,16 +21,32 @@ export const Route = createRootRoute({
         rel: "stylesheet",
         href: "/src/index.css",
       },
+      // {
+      //   rel: "stylesheet",
+      //   href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+      // },
     ],
   }),
   component: RootComponent,
 });
 
 function RootComponent() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+        refetchOnMount: false,
+        retry: false,
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
+    <QueryClientProvider client={queryClient}>
+      <RootDocument>
+        <Outlet />
+      </RootDocument>
+    </QueryClientProvider>
   );
 }
 

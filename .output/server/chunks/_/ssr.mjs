@@ -1,5 +1,6 @@
 import { createRootRoute, Outlet, HeadContent, Scripts, createFileRoute, lazyRouteComponent, RouterProvider, createRouter as createRouter$1 } from '@tanstack/react-router';
 import { jsx, jsxs } from 'react/jsx-runtime';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createMemoryHistory } from '@tanstack/history';
 import { json, mergeHeaders } from '@tanstack/router-core/ssr/client';
 import { joinPaths, trimPath, processRouteTree, isRedirect, isResolvedRedirect, isNotFound, rootRouteId, getMatchedRoutes, isPlainObject } from '@tanstack/router-core';
@@ -756,7 +757,7 @@ async function loadVirtualModule(id) {
     case VIRTUAL_MODULES.routeTree:
       return await Promise.resolve().then(() => routeTree_gen);
     case VIRTUAL_MODULES.startManifest:
-      return await import('./_tanstack-start-manifest_v-Bj5omXIh.mjs');
+      return await import('./_tanstack-start-manifest_v-BG7bJLRf.mjs');
     case VIRTUAL_MODULES.serverFnManifest:
       return await import('./_tanstack-start-server-fn-manifest_v-DtgTK7xl.mjs');
     default:
@@ -1257,15 +1258,31 @@ const Route$b = createRootRoute({
       name: "title",
       content: "TanStack Start Starter"
     }],
-    links: [{
-      rel: "stylesheet",
-      href: "/src/index.css"
-    }]
+    links: [
+      {
+        rel: "stylesheet",
+        href: "/src/index.css"
+      }
+      // {
+      //   rel: "stylesheet",
+      //   href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+      // },
+    ]
   }),
   component: RootComponent
 });
 function RootComponent() {
-  return /* @__PURE__ */ jsx(RootDocument, { children: /* @__PURE__ */ jsx(Outlet, {}) });
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+        refetchOnMount: false,
+        retry: false,
+        refetchOnWindowFocus: false
+      }
+    }
+  });
+  return /* @__PURE__ */ jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsx(RootDocument, { children: /* @__PURE__ */ jsx(Outlet, {}) }) });
 }
 function RootDocument({
   children
@@ -1278,19 +1295,19 @@ function RootDocument({
     ] })
   ] });
 }
-const $$splitComponentImporter$a = () => import('./_layout-C2n8NJSf.mjs');
+const $$splitComponentImporter$a = () => import('./_layout-DerTlzQK.mjs');
 const Route$a = createFileRoute("/_layout")({
   component: lazyRouteComponent($$splitComponentImporter$a, "component")
 });
-const $$splitComponentImporter$9 = () => import('./index-BqczBchK.mjs');
-const Route$9 = createFileRoute("/_layout/")({
+const $$splitComponentImporter$9 = () => import('./_base-Cd42pAHA.mjs');
+const Route$9 = createFileRoute("/_base")({
   component: lazyRouteComponent($$splitComponentImporter$9, "component")
 });
-const $$splitComponentImporter$8 = () => import('./route-h102EW9c.mjs');
-const Route$8 = createFileRoute("/_layout/settings")({
+const $$splitComponentImporter$8 = () => import('./index-BqczBchK.mjs');
+const Route$8 = createFileRoute("/_base/")({
   component: lazyRouteComponent($$splitComponentImporter$8, "component")
 });
-const $$splitComponentImporter$7 = () => import('./index-CWr1qxk5.mjs');
+const $$splitComponentImporter$7 = () => import('./index-B_e6MBtf.mjs');
 const Route$7 = createFileRoute("/_layout/settings/")({
   component: lazyRouteComponent($$splitComponentImporter$7, "component")
 });
@@ -1326,57 +1343,60 @@ const LayoutRoute = Route$a.update({
   id: "/_layout",
   getParentRoute: () => Route$b
 });
-const LayoutIndexRoute = Route$9.update({
+const BaseRoute = Route$9.update({
+  id: "/_base",
+  getParentRoute: () => Route$b
+});
+const BaseIndexRoute = Route$8.update({
   id: "/",
   path: "/",
-  getParentRoute: () => LayoutRoute
-});
-const LayoutSettingsRouteRoute = Route$8.update({
-  id: "/settings",
-  path: "/settings",
-  getParentRoute: () => LayoutRoute
+  getParentRoute: () => BaseRoute
 });
 const LayoutSettingsIndexRoute = Route$7.update({
-  id: "/",
-  path: "/",
-  getParentRoute: () => LayoutSettingsRouteRoute
+  id: "/settings/",
+  path: "/settings/",
+  getParentRoute: () => LayoutRoute
 });
 const LayoutSettingsUsersRoute = Route$6.update({
-  id: "/users",
-  path: "/users",
-  getParentRoute: () => LayoutSettingsRouteRoute
+  id: "/settings/users",
+  path: "/settings/users",
+  getParentRoute: () => LayoutRoute
 });
 const LayoutSettingsTaskRoute = Route$5.update({
-  id: "/task",
-  path: "/task",
-  getParentRoute: () => LayoutSettingsRouteRoute
+  id: "/settings/task",
+  path: "/settings/task",
+  getParentRoute: () => LayoutRoute
 });
 const LayoutSettingsSupportRoute = Route$4.update({
-  id: "/support",
-  path: "/support",
-  getParentRoute: () => LayoutSettingsRouteRoute
+  id: "/settings/support",
+  path: "/settings/support",
+  getParentRoute: () => LayoutRoute
 });
 const LayoutSettingsReportingRoute = Route$3.update({
-  id: "/reporting",
-  path: "/reporting",
-  getParentRoute: () => LayoutSettingsRouteRoute
+  id: "/settings/reporting",
+  path: "/settings/reporting",
+  getParentRoute: () => LayoutRoute
 });
 const LayoutSettingsProjectsRoute = Route$2.update({
-  id: "/projects",
-  path: "/projects",
-  getParentRoute: () => LayoutSettingsRouteRoute
+  id: "/settings/projects",
+  path: "/settings/projects",
+  getParentRoute: () => LayoutRoute
 });
 const LayoutSettingsHomeRoute = Route$1.update({
-  id: "/home",
-  path: "/home",
-  getParentRoute: () => LayoutSettingsRouteRoute
+  id: "/settings/home",
+  path: "/settings/home",
+  getParentRoute: () => LayoutRoute
 });
 const LayoutSettingsDashboardRoute = Route.update({
-  id: "/dashboard",
-  path: "/dashboard",
-  getParentRoute: () => LayoutSettingsRouteRoute
+  id: "/settings/dashboard",
+  path: "/settings/dashboard",
+  getParentRoute: () => LayoutRoute
 });
-const LayoutSettingsRouteRouteChildren = {
+const BaseRouteChildren = {
+  BaseIndexRoute
+};
+const BaseRouteWithChildren = BaseRoute._addFileChildren(BaseRouteChildren);
+const LayoutRouteChildren = {
   LayoutSettingsDashboardRoute,
   LayoutSettingsHomeRoute,
   LayoutSettingsProjectsRoute,
@@ -1386,13 +1406,9 @@ const LayoutSettingsRouteRouteChildren = {
   LayoutSettingsUsersRoute,
   LayoutSettingsIndexRoute
 };
-const LayoutSettingsRouteRouteWithChildren = LayoutSettingsRouteRoute._addFileChildren(LayoutSettingsRouteRouteChildren);
-const LayoutRouteChildren = {
-  LayoutSettingsRouteRoute: LayoutSettingsRouteRouteWithChildren,
-  LayoutIndexRoute
-};
 const LayoutRouteWithChildren = LayoutRoute._addFileChildren(LayoutRouteChildren);
 const rootRouteChildren = {
+  BaseRoute: BaseRouteWithChildren,
   LayoutRoute: LayoutRouteWithChildren
 };
 const routeTree = Route$b._addFileChildren(rootRouteChildren)._addFileTypes();

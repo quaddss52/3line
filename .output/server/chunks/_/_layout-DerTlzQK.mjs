@@ -18,7 +18,7 @@ function Logo() {
       xmlns: "http://www.w3.org/2000/svg",
       children: [
         /* @__PURE__ */ jsxs("g", { filter: "url(#filter0_dd_21_27254)", children: [
-          /* @__PURE__ */ jsxs("g", { "clip-path": "url(#clip0_21_27254)", children: [
+          /* @__PURE__ */ jsxs("g", { clipPath: "url(#clip0_21_27254)", children: [
             /* @__PURE__ */ jsx("rect", { x: "3", y: "2", width: "32.2254", height: "32", rx: "8", fill: "white" }),
             /* @__PURE__ */ jsx(
               "rect",
@@ -119,7 +119,7 @@ function Logo() {
                 }
               }
             ) }),
-            /* @__PURE__ */ jsx("g", { "dataFigmaBg-blurRadius": "5", children: /* @__PURE__ */ jsx(
+            /* @__PURE__ */ jsx("g", { "data-figma-bg-blur-radius": "5", children: /* @__PURE__ */ jsx(
               "path",
               {
                 d: "M3 18H35.2254V21.2C35.2254 25.6804 35.2254 27.9206 34.3534 29.6319C33.5864 31.1372 32.3626 32.3611 30.8573 33.1281C29.146 34 26.9058 34 22.4254 34H15.8C11.3196 34 9.07937 34 7.36808 33.1281C5.86278 32.3611 4.63893 31.1372 3.87195 29.6319C3 27.9206 3 25.6804 3 21.2V18Z",
@@ -227,7 +227,7 @@ function Logo() {
               width: "22.1127",
               height: "22",
               filterUnits: "userSpaceOnUse",
-              "color-interpolation-filters": "sRGB",
+              colorInterpolationFilters: "sRGB",
               children: [
                 /* @__PURE__ */ jsx("feFlood", { floodOpacity: "0", result: "BackgroundImageFix" }),
                 /* @__PURE__ */ jsx(
@@ -542,7 +542,13 @@ function SidebarContent() {
                 }
               )
             ] }),
-            item.notifs > 0 && /* @__PURE__ */ jsx("div", { className: "px-2 py-1 text-sm bg-grey-100 text-grey-600 group-hover:bg-black bg-gray-100 transition-all duration-500 ease-in-out rounded-full group-hover:text-white transition-all", children: /* @__PURE__ */ jsx("p", { children: item.notifs }) })
+            item.notifs > 0 && /* @__PURE__ */ jsx(
+              "div",
+              {
+                className: ` ${currentPath === item.href ? "bg-black text-white" : " text-grey-600 bg-gray-100"} px-2 py-1  text-sm  group-hover:bg-black transition-all duration-500 ease-in-out rounded-full group-hover:text-white transition-all`,
+                children: /* @__PURE__ */ jsx("p", { children: item.notifs })
+              }
+            )
           ]
         },
         index
@@ -630,7 +636,7 @@ function Sidebar() {
   const handleCloseDrawer = () => {
     setIsDrawerOpen(false);
   };
-  return /* @__PURE__ */ jsxs("div", { className: "h-fit lg:h-full sticky top-0 z-40 shadow-md flex overflow-y-scroll  lg:flex-col justify-between bg-white gap-5 p-5 lg:p-3 xl:p-5", children: [
+  return /* @__PURE__ */ jsxs("div", { className: " h-fit lg:h-full sticky top-0 z-40 shadow-md flex overflow-y-scroll  lg:flex-col justify-between bg-white gap-5 p-5 lg:p-3 xl:p-5", children: [
     /* @__PURE__ */ jsxs("div", { className: "flex w-full justify-between items-center", children: [
       /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
         /* @__PURE__ */ jsx(Logo, {}),
@@ -645,12 +651,12 @@ function Sidebar() {
   ] });
 }
 function RouteComponent() {
-  return /* @__PURE__ */ jsxs("div", { className: "h-screen w-full lg:grid bg-gray-100 lg:grid-cols-[20%_1fr]", children: [
+  return /* @__PURE__ */ jsxs("div", { className: "lg:h-screen  w-full lg:grid bg-gray-100 lg:grid-cols-[20%_1fr]", children: [
     /* @__PURE__ */ jsx(Sidebar, {}),
-    /* @__PURE__ */ jsx("main", { className: " p-5  w-full h-full overflow-y-scroll", children: /* @__PURE__ */ jsx(Outlet, {}) })
+    /* @__PURE__ */ jsx("main", { className: " noscrollbar p-5 w-full h-full overflow-y-scroll", children: /* @__PURE__ */ jsx(Outlet, {}) })
   ] });
 }
 const SplitComponent = RouteComponent;
 
 export { SplitComponent as component };
-//# sourceMappingURL=route-h102EW9c.mjs.map
+//# sourceMappingURL=_layout-DerTlzQK.mjs.map

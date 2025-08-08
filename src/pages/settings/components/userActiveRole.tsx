@@ -1,10 +1,17 @@
 import { initialRoles } from "@/constants/settings";
+import { IRole } from "@/models/rolesettings.model";
 import { Check, Plus, Users } from "lucide-react";
 import { useState } from "react";
-export default function UserActiveRole() {
+export default function UserActiveRole({
+  roless,
+  isLoading,
+}: {
+  roless: IRole[];
+  isLoading: boolean;
+}) {
   const [roles, setRoles] = useState(initialRoles);
 
-  const handleRoleSelect = (roleId) => {
+  const handleRoleSelect = (roleId: number) => {
     setRoles(
       roles.map((role) => ({
         ...role,
@@ -13,7 +20,7 @@ export default function UserActiveRole() {
     );
   };
 
-  const handleSetDefault = (roleId) => {
+  const handleSetDefault = (roleId: number) => {
     setRoles(
       roles.map((role) => ({
         ...role,

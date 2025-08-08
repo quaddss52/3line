@@ -1,8 +1,10 @@
+import { useGetAllRoles } from "@/services/queries/settings";
 import EmailConnection from "./emailConnection";
 import RoleTable from "./roleTable";
 import UserActiveRole from "./userActiveRole";
 
 export default function RoleSettingsTab() {
+  const { data, isLoading } = useGetAllRoles();
   return (
     <div className="w-full flex flex-col gap-6">
       <div className="flex flex-col w-full pb-3 border-b ">
@@ -12,8 +14,8 @@ export default function RoleSettingsTab() {
         </p>
       </div>
       <EmailConnection />
-      <UserActiveRole />
-      <RoleTable />
+      <UserActiveRole roless={data || []} isLoading={isLoading} />
+      <RoleTable roles={data || []} isLoading={isLoading} />
     </div>
   );
 }

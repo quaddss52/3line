@@ -8,7 +8,7 @@ export default function Logo() {
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_dd_21_27254)">
-        <g clip-path="url(#clip0_21_27254)">
+        <g clipPath="url(#clip0_21_27254)">
           <rect x="3" y="2" width="32.2254" height="32" rx="8" fill="white" />
           <rect
             x="3"
@@ -80,7 +80,7 @@ export default function Logo() {
               }}
             ></div>
           </foreignObject>
-          <g dataFigmaBg-blurRadius="5">
+          <g data-figma-bg-blur-radius="5">
             <path
               d="M3 18H35.2254V21.2C35.2254 25.6804 35.2254 27.9206 34.3534 29.6319C33.5864 31.1372 32.3626 32.3611 30.8573 33.1281C29.146 34 26.9058 34 22.4254 34H15.8C11.3196 34 9.07937 34 7.36808 33.1281C5.86278 32.3611 4.63893 31.1372 3.87195 29.6319C3 27.9206 3 25.6804 3 21.2V18Z"
               fill="white"
@@ -157,7 +157,7 @@ export default function Logo() {
           width="22.1127"
           height="22"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
           <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix

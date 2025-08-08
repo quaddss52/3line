@@ -5,58 +5,6 @@ import { Checkbox } from "@radix-ui/react-checkbox";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Check, CloudDownload } from "lucide-react";
 
-const data: IRole[] = [
-  {
-    name: "Superadmin",
-    type: "DEFAULT",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 7,
-  },
-  {
-    name: "Merchantadmin",
-    type: "DEFAULT",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 5,
-  },
-  {
-    name: "supportadmin",
-    type: "DEFAULT",
-    createdAt: "Jan 1, 2023",
-    status: "Inactive",
-    users: 5,
-  },
-  {
-    name: "sales personnel",
-    type: "CUSTOM",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 5,
-  },
-  {
-    name: "Deputy sales personnel",
-    type: "CUSTOM",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 5,
-  },
-  {
-    name: "Developeradmin",
-    type: "SYSTEM-CUSTOM",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 5,
-  },
-  {
-    name: "Developer-basic",
-    type: "SYSTEM-CUSTOM",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 5,
-  },
-];
-
 export const columns: ColumnDef<IRole>[] = [
   {
     id: "select",
@@ -139,17 +87,23 @@ export const columns: ColumnDef<IRole>[] = [
     enableHiding: false,
   },
 ];
-export default function RoleTable() {
+export default function RoleTable({
+  roles,
+  isLoading,
+}: {
+  roles: IRole[];
+  isLoading: boolean;
+}) {
   return (
     <div className="w-full flex flex-col gap-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center gap-3 justify-between">
         <p className="font-medium text-lg">User Roles</p>
         <button className="flex items-center cursor-pointer hover:shadow-md hover:bg-purple-600 hover:text-white ease-in-out duration-500 gap-2 w-fit bg-white border rounded-lg text-sm font-medium text-nowrap text-primaary-50 px-5 py-2">
           <CloudDownload size={14} />
           Download all
         </button>
       </div>
-      <ThreeLineTable columns={columns} data={data} />
+      <ThreeLineTable isLoading={isLoading} columns={columns} data={roles} />
     </div>
   );
 }

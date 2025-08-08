@@ -1,13 +1,13 @@
 {
   "../../../../../../~start/default-client-entry.tsx": {
-    "file": "assets/main-Dk-WByPp.js",
+    "file": "assets/main-CIaKG4K4.js",
     "name": "main",
     "src": "../../../../../../~start/default-client-entry.tsx",
     "isEntry": true,
     "dynamicImports": [
       "src/routes/_layout.tsx?tsr-split=component",
-      "src/routes/_layout/index.tsx?tsr-split=component",
-      "src/routes/_layout/settings/route.tsx?tsr-split=component",
+      "src/routes/_base.tsx?tsr-split=component",
+      "src/routes/_base/index.tsx?tsr-split=component",
       "src/routes/_layout/settings/index.tsx?tsr-split=component",
       "src/routes/_layout/settings/users.tsx?tsr-split=component",
       "src/routes/_layout/settings/task.tsx?tsr-split=component",
@@ -18,129 +18,129 @@
       "src/routes/_layout/settings/dashboard.tsx?tsr-split=component"
     ],
     "css": [
-      "assets/main-D8AgOEkH.css"
+      "assets/main-3j4XVglA.css"
     ]
   },
-  "_emptyPageScaffold-DAD1liot.js": {
-    "file": "assets/emptyPageScaffold-DAD1liot.js",
+  "_emptyPageScaffold-zjCyTlK7.js": {
+    "file": "assets/emptyPageScaffold-zjCyTlK7.js",
     "name": "emptyPageScaffold",
     "imports": [
       "../../../../../../~start/default-client-entry.tsx"
     ]
   },
-  "_utils-BevnpZVg.js": {
-    "file": "assets/utils-BevnpZVg.js",
+  "_utils-Bku4EFaU.js": {
+    "file": "assets/utils-Bku4EFaU.js",
     "name": "utils",
     "imports": [
       "../../../../../../~start/default-client-entry.tsx"
     ]
   },
+  "src/routes/_base.tsx?tsr-split=component": {
+    "file": "assets/_base-Bu1ToEbO.js",
+    "name": "_base",
+    "src": "src/routes/_base.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "../../../../../../~start/default-client-entry.tsx"
+    ]
+  },
+  "src/routes/_base/index.tsx?tsr-split=component": {
+    "file": "assets/index-BuThnvSx.js",
+    "name": "index",
+    "src": "src/routes/_base/index.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "../../../../../../~start/default-client-entry.tsx"
+    ]
+  },
   "src/routes/_layout.tsx?tsr-split=component": {
-    "file": "assets/_layout-DXOsEMG0.js",
+    "file": "assets/_layout-BsD7ivNa.js",
     "name": "_layout",
     "src": "src/routes/_layout.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
-      "../../../../../../~start/default-client-entry.tsx"
-    ]
-  },
-  "src/routes/_layout/index.tsx?tsr-split=component": {
-    "file": "assets/index-DTtuwqKS.js",
-    "name": "index",
-    "src": "src/routes/_layout/index.tsx?tsr-split=component",
-    "isDynamicEntry": true,
-    "imports": [
-      "../../../../../../~start/default-client-entry.tsx"
+      "../../../../../../~start/default-client-entry.tsx",
+      "_utils-Bku4EFaU.js"
     ]
   },
   "src/routes/_layout/settings/dashboard.tsx?tsr-split=component": {
-    "file": "assets/dashboard-WGFv8hWx.js",
+    "file": "assets/dashboard-Dn9GooWz.js",
     "name": "dashboard",
     "src": "src/routes/_layout/settings/dashboard.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
       "../../../../../../~start/default-client-entry.tsx",
-      "_emptyPageScaffold-DAD1liot.js"
+      "_emptyPageScaffold-zjCyTlK7.js"
     ]
   },
   "src/routes/_layout/settings/home.tsx?tsr-split=component": {
-    "file": "assets/home-syBz05Uf.js",
+    "file": "assets/home-Djd56zvW.js",
     "name": "home",
     "src": "src/routes/_layout/settings/home.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
       "../../../../../../~start/default-client-entry.tsx",
-      "_emptyPageScaffold-DAD1liot.js"
+      "_emptyPageScaffold-zjCyTlK7.js"
     ]
   },
   "src/routes/_layout/settings/index.tsx?tsr-split=component": {
-    "file": "assets/index-vfGwV6CH.js",
+    "file": "assets/index-BdxDuUEY.js",
     "name": "index",
     "src": "src/routes/_layout/settings/index.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
       "../../../../../../~start/default-client-entry.tsx",
-      "_utils-BevnpZVg.js"
+      "_utils-Bku4EFaU.js"
     ]
   },
   "src/routes/_layout/settings/projects.tsx?tsr-split=component": {
-    "file": "assets/projects-BYzLP7RB.js",
+    "file": "assets/projects-BVFJS_E-.js",
     "name": "projects",
     "src": "src/routes/_layout/settings/projects.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
       "../../../../../../~start/default-client-entry.tsx",
-      "_emptyPageScaffold-DAD1liot.js"
+      "_emptyPageScaffold-zjCyTlK7.js"
     ]
   },
   "src/routes/_layout/settings/reporting.tsx?tsr-split=component": {
-    "file": "assets/reporting-ojU45A-K.js",
+    "file": "assets/reporting-Ksj-RZrh.js",
     "name": "reporting",
     "src": "src/routes/_layout/settings/reporting.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
       "../../../../../../~start/default-client-entry.tsx",
-      "_emptyPageScaffold-DAD1liot.js"
-    ]
-  },
-  "src/routes/_layout/settings/route.tsx?tsr-split=component": {
-    "file": "assets/route-BbEqHeNu.js",
-    "name": "route",
-    "src": "src/routes/_layout/settings/route.tsx?tsr-split=component",
-    "isDynamicEntry": true,
-    "imports": [
-      "../../../../../../~start/default-client-entry.tsx",
-      "_utils-BevnpZVg.js"
+      "_emptyPageScaffold-zjCyTlK7.js"
     ]
   },
   "src/routes/_layout/settings/support.tsx?tsr-split=component": {
-    "file": "assets/support-CQR3tvDm.js",
+    "file": "assets/support-CeW4maEi.js",
     "name": "support",
     "src": "src/routes/_layout/settings/support.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
       "../../../../../../~start/default-client-entry.tsx",
-      "_emptyPageScaffold-DAD1liot.js"
+      "_emptyPageScaffold-zjCyTlK7.js"
     ]
   },
   "src/routes/_layout/settings/task.tsx?tsr-split=component": {
-    "file": "assets/task-8sK8c4sd.js",
+    "file": "assets/task-CxPTdjlv.js",
     "name": "task",
     "src": "src/routes/_layout/settings/task.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
       "../../../../../../~start/default-client-entry.tsx",
-      "_emptyPageScaffold-DAD1liot.js"
+      "_emptyPageScaffold-zjCyTlK7.js"
     ]
   },
   "src/routes/_layout/settings/users.tsx?tsr-split=component": {
-    "file": "assets/users-DUjip6Ak.js",
+    "file": "assets/users-ByiIKyzN.js",
     "name": "users",
     "src": "src/routes/_layout/settings/users.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
       "../../../../../../~start/default-client-entry.tsx",
-      "_emptyPageScaffold-DAD1liot.js"
+      "_emptyPageScaffold-zjCyTlK7.js"
     ]
   }
 }

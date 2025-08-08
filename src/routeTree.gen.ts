@@ -10,8 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LayoutRouteImport } from './routes/_layout'
-import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
-import { Route as LayoutSettingsRouteRouteImport } from './routes/_layout/settings/route'
+import { Route as BaseRouteImport } from './routes/_base'
+import { Route as BaseIndexRouteImport } from './routes/_base/index'
 import { Route as LayoutSettingsIndexRouteImport } from './routes/_layout/settings/index'
 import { Route as LayoutSettingsUsersRouteImport } from './routes/_layout/settings/users'
 import { Route as LayoutSettingsTaskRouteImport } from './routes/_layout/settings/task'
@@ -25,60 +25,58 @@ const LayoutRoute = LayoutRouteImport.update({
   id: '/_layout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LayoutIndexRoute = LayoutIndexRouteImport.update({
+const BaseRoute = BaseRouteImport.update({
+  id: '/_base',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BaseIndexRoute = BaseIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => LayoutRoute,
-} as any)
-const LayoutSettingsRouteRoute = LayoutSettingsRouteRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => LayoutRoute,
+  getParentRoute: () => BaseRoute,
 } as any)
 const LayoutSettingsIndexRoute = LayoutSettingsIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => LayoutSettingsRouteRoute,
+  id: '/settings/',
+  path: '/settings/',
+  getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutSettingsUsersRoute = LayoutSettingsUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
-  getParentRoute: () => LayoutSettingsRouteRoute,
+  id: '/settings/users',
+  path: '/settings/users',
+  getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutSettingsTaskRoute = LayoutSettingsTaskRouteImport.update({
-  id: '/task',
-  path: '/task',
-  getParentRoute: () => LayoutSettingsRouteRoute,
+  id: '/settings/task',
+  path: '/settings/task',
+  getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutSettingsSupportRoute = LayoutSettingsSupportRouteImport.update({
-  id: '/support',
-  path: '/support',
-  getParentRoute: () => LayoutSettingsRouteRoute,
+  id: '/settings/support',
+  path: '/settings/support',
+  getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutSettingsReportingRoute = LayoutSettingsReportingRouteImport.update({
-  id: '/reporting',
-  path: '/reporting',
-  getParentRoute: () => LayoutSettingsRouteRoute,
+  id: '/settings/reporting',
+  path: '/settings/reporting',
+  getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutSettingsProjectsRoute = LayoutSettingsProjectsRouteImport.update({
-  id: '/projects',
-  path: '/projects',
-  getParentRoute: () => LayoutSettingsRouteRoute,
+  id: '/settings/projects',
+  path: '/settings/projects',
+  getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutSettingsHomeRoute = LayoutSettingsHomeRouteImport.update({
-  id: '/home',
-  path: '/home',
-  getParentRoute: () => LayoutSettingsRouteRoute,
+  id: '/settings/home',
+  path: '/settings/home',
+  getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutSettingsDashboardRoute = LayoutSettingsDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => LayoutSettingsRouteRoute,
+  id: '/settings/dashboard',
+  path: '/settings/dashboard',
+  getParentRoute: () => LayoutRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/settings': typeof LayoutSettingsRouteRouteWithChildren
-  '/': typeof LayoutIndexRoute
+  '/': typeof BaseIndexRoute
   '/settings/dashboard': typeof LayoutSettingsDashboardRoute
   '/settings/home': typeof LayoutSettingsHomeRoute
   '/settings/projects': typeof LayoutSettingsProjectsRoute
@@ -86,10 +84,10 @@ export interface FileRoutesByFullPath {
   '/settings/support': typeof LayoutSettingsSupportRoute
   '/settings/task': typeof LayoutSettingsTaskRoute
   '/settings/users': typeof LayoutSettingsUsersRoute
-  '/settings/': typeof LayoutSettingsIndexRoute
+  '/settings': typeof LayoutSettingsIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof LayoutIndexRoute
+  '/': typeof BaseIndexRoute
   '/settings/dashboard': typeof LayoutSettingsDashboardRoute
   '/settings/home': typeof LayoutSettingsHomeRoute
   '/settings/projects': typeof LayoutSettingsProjectsRoute
@@ -101,9 +99,9 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_base': typeof BaseRouteWithChildren
   '/_layout': typeof LayoutRouteWithChildren
-  '/_layout/settings': typeof LayoutSettingsRouteRouteWithChildren
-  '/_layout/': typeof LayoutIndexRoute
+  '/_base/': typeof BaseIndexRoute
   '/_layout/settings/dashboard': typeof LayoutSettingsDashboardRoute
   '/_layout/settings/home': typeof LayoutSettingsHomeRoute
   '/_layout/settings/projects': typeof LayoutSettingsProjectsRoute
@@ -116,7 +114,6 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/settings'
     | '/'
     | '/settings/dashboard'
     | '/settings/home'
@@ -125,7 +122,7 @@ export interface FileRouteTypes {
     | '/settings/support'
     | '/settings/task'
     | '/settings/users'
-    | '/settings/'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -139,9 +136,9 @@ export interface FileRouteTypes {
     | '/settings'
   id:
     | '__root__'
+    | '/_base'
     | '/_layout'
-    | '/_layout/settings'
-    | '/_layout/'
+    | '/_base/'
     | '/_layout/settings/dashboard'
     | '/_layout/settings/home'
     | '/_layout/settings/projects'
@@ -153,6 +150,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  BaseRoute: typeof BaseRouteWithChildren
   LayoutRoute: typeof LayoutRouteWithChildren
 }
 
@@ -165,80 +163,90 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_layout/': {
-      id: '/_layout/'
+    '/_base': {
+      id: '/_base'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof BaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_base/': {
+      id: '/_base/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof LayoutIndexRouteImport
-      parentRoute: typeof LayoutRoute
-    }
-    '/_layout/settings': {
-      id: '/_layout/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof LayoutSettingsRouteRouteImport
-      parentRoute: typeof LayoutRoute
+      preLoaderRoute: typeof BaseIndexRouteImport
+      parentRoute: typeof BaseRoute
     }
     '/_layout/settings/': {
       id: '/_layout/settings/'
-      path: '/'
-      fullPath: '/settings/'
+      path: '/settings'
+      fullPath: '/settings'
       preLoaderRoute: typeof LayoutSettingsIndexRouteImport
-      parentRoute: typeof LayoutSettingsRouteRoute
+      parentRoute: typeof LayoutRoute
     }
     '/_layout/settings/users': {
       id: '/_layout/settings/users'
-      path: '/users'
+      path: '/settings/users'
       fullPath: '/settings/users'
       preLoaderRoute: typeof LayoutSettingsUsersRouteImport
-      parentRoute: typeof LayoutSettingsRouteRoute
+      parentRoute: typeof LayoutRoute
     }
     '/_layout/settings/task': {
       id: '/_layout/settings/task'
-      path: '/task'
+      path: '/settings/task'
       fullPath: '/settings/task'
       preLoaderRoute: typeof LayoutSettingsTaskRouteImport
-      parentRoute: typeof LayoutSettingsRouteRoute
+      parentRoute: typeof LayoutRoute
     }
     '/_layout/settings/support': {
       id: '/_layout/settings/support'
-      path: '/support'
+      path: '/settings/support'
       fullPath: '/settings/support'
       preLoaderRoute: typeof LayoutSettingsSupportRouteImport
-      parentRoute: typeof LayoutSettingsRouteRoute
+      parentRoute: typeof LayoutRoute
     }
     '/_layout/settings/reporting': {
       id: '/_layout/settings/reporting'
-      path: '/reporting'
+      path: '/settings/reporting'
       fullPath: '/settings/reporting'
       preLoaderRoute: typeof LayoutSettingsReportingRouteImport
-      parentRoute: typeof LayoutSettingsRouteRoute
+      parentRoute: typeof LayoutRoute
     }
     '/_layout/settings/projects': {
       id: '/_layout/settings/projects'
-      path: '/projects'
+      path: '/settings/projects'
       fullPath: '/settings/projects'
       preLoaderRoute: typeof LayoutSettingsProjectsRouteImport
-      parentRoute: typeof LayoutSettingsRouteRoute
+      parentRoute: typeof LayoutRoute
     }
     '/_layout/settings/home': {
       id: '/_layout/settings/home'
-      path: '/home'
+      path: '/settings/home'
       fullPath: '/settings/home'
       preLoaderRoute: typeof LayoutSettingsHomeRouteImport
-      parentRoute: typeof LayoutSettingsRouteRoute
+      parentRoute: typeof LayoutRoute
     }
     '/_layout/settings/dashboard': {
       id: '/_layout/settings/dashboard'
-      path: '/dashboard'
+      path: '/settings/dashboard'
       fullPath: '/settings/dashboard'
       preLoaderRoute: typeof LayoutSettingsDashboardRouteImport
-      parentRoute: typeof LayoutSettingsRouteRoute
+      parentRoute: typeof LayoutRoute
     }
   }
 }
 
-interface LayoutSettingsRouteRouteChildren {
+interface BaseRouteChildren {
+  BaseIndexRoute: typeof BaseIndexRoute
+}
+
+const BaseRouteChildren: BaseRouteChildren = {
+  BaseIndexRoute: BaseIndexRoute,
+}
+
+const BaseRouteWithChildren = BaseRoute._addFileChildren(BaseRouteChildren)
+
+interface LayoutRouteChildren {
   LayoutSettingsDashboardRoute: typeof LayoutSettingsDashboardRoute
   LayoutSettingsHomeRoute: typeof LayoutSettingsHomeRoute
   LayoutSettingsProjectsRoute: typeof LayoutSettingsProjectsRoute
@@ -249,7 +257,7 @@ interface LayoutSettingsRouteRouteChildren {
   LayoutSettingsIndexRoute: typeof LayoutSettingsIndexRoute
 }
 
-const LayoutSettingsRouteRouteChildren: LayoutSettingsRouteRouteChildren = {
+const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutSettingsDashboardRoute: LayoutSettingsDashboardRoute,
   LayoutSettingsHomeRoute: LayoutSettingsHomeRoute,
   LayoutSettingsProjectsRoute: LayoutSettingsProjectsRoute,
@@ -260,23 +268,11 @@ const LayoutSettingsRouteRouteChildren: LayoutSettingsRouteRouteChildren = {
   LayoutSettingsIndexRoute: LayoutSettingsIndexRoute,
 }
 
-const LayoutSettingsRouteRouteWithChildren =
-  LayoutSettingsRouteRoute._addFileChildren(LayoutSettingsRouteRouteChildren)
-
-interface LayoutRouteChildren {
-  LayoutSettingsRouteRoute: typeof LayoutSettingsRouteRouteWithChildren
-  LayoutIndexRoute: typeof LayoutIndexRoute
-}
-
-const LayoutRouteChildren: LayoutRouteChildren = {
-  LayoutSettingsRouteRoute: LayoutSettingsRouteRouteWithChildren,
-  LayoutIndexRoute: LayoutIndexRoute,
-}
-
 const LayoutRouteWithChildren =
   LayoutRoute._addFileChildren(LayoutRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
+  BaseRoute: BaseRouteWithChildren,
   LayoutRoute: LayoutRouteWithChildren,
 }
 export const routeTree = rootRouteImport

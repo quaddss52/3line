@@ -1,6 +1,8 @@
-import { jsx, jsxs } from 'react/jsx-runtime';
+import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { c as cn } from './utils-H80jjgLf.mjs';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { Mail, Check, Users, Plus, CloudDownload, CircleIcon, ArrowUpDown } from 'lucide-react';
 import { Label } from '@radix-ui/react-label';
@@ -108,6 +110,62 @@ const initialRoles = [
     isDefault: false
   }
 ];
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL || "https://3line-apivercel.vercel.app/api";
+const instance = axios.create({
+  baseURL
+});
+async function handleAxiosError(error) {
+  var _a, _b, _c, _d, _e;
+  if (axios.isAxiosError(error)) {
+    const statusCode = (_a = error.response) == null ? void 0 : _a.status;
+    const backendMessage = (_c = (_b = error.response) == null ? void 0 : _b.data) == null ? void 0 : _c.message;
+    const message = backendMessage || error.message || "An unknown error occurred";
+    const errors = (_e = (_d = error.response) == null ? void 0 : _d.data) == null ? void 0 : _e.errors;
+    return Promise.reject({
+      statusCode,
+      message,
+      errors,
+      stack: error.stack
+    });
+  }
+  const e = error;
+  return Promise.reject({
+    message: e.message,
+    stack: e.stack
+  });
+}
+const handleResponse = (response) => {
+  return {
+    data: response.data.data,
+    message: response.data.message,
+    success: response.data.success
+  };
+};
+instance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    return handleAxiosError(error);
+  }
+);
+class HTTPClient {
+  static async get(url, config) {
+    const res = await instance.get(url, config);
+    return handleResponse(res);
+  }
+  // can be extended just because but mehh...
+}
+class SettingsService {
+  static async getAllRole() {
+    const response = await HTTPClient.get(`roles`);
+    return response.data;
+  }
+}
+const useGetAllRoles = () => {
+  return useQuery({
+    queryKey: ["system_roles"],
+    queryFn: SettingsService.getAllRole
+  });
+};
 function RadioGroup({
   className,
   ...props
@@ -301,9 +359,23 @@ function TableCell({ className, ...props }) {
     }
   );
 }
+function Skeleton({ className, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      "data-slot": "skeleton",
+      className: cn("bg-accent animate-pulse rounded-md", className),
+      ...props
+    }
+  );
+}
+const TableLoader = ({ columnCount, rowCount = 3 }) => {
+  return /* @__PURE__ */ jsx(Fragment, { children: Array.from({ length: rowCount }).map(() => /* @__PURE__ */ jsx("tr", { children: Array.from({ length: columnCount }).map(() => /* @__PURE__ */ jsx("td", { className: "px-2 py-3", children: /* @__PURE__ */ jsx(Skeleton, { className: "h-[35px]" }) }, crypto.randomUUID())) }, crypto.randomUUID())) });
+};
 function ThreeLineTable({
-  data: data2,
-  columns: columns2
+  data,
+  columns: columns2,
+  isLoading
 }) {
   var _a;
   const [sorting, setSorting] = useState([]);
@@ -311,7 +383,7 @@ function ThreeLineTable({
   const [columnVisibility, setColumnVisibility] = useState({});
   const [rowSelection, setRowSelection] = useState({});
   const table = useReactTable({
-    data: data2,
+    data,
     columns: columns2,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -335,67 +407,26 @@ function ThreeLineTable({
         header.getContext()
       ) }, header.id);
     }) }, headerGroup.id)) }),
-    /* @__PURE__ */ jsx(TableBody, { children: ((_a = table.getRowModel().rows) == null ? void 0 : _a.length) ? table.getRowModel().rows.map((row) => /* @__PURE__ */ jsx(
+    isLoading ? /* @__PURE__ */ jsx(TableBody, { children: /* @__PURE__ */ jsx(TableLoader, { columnCount: table.getAllColumns().length }) }) : /* @__PURE__ */ jsx(TableBody, { children: ((_a = table.getRowModel().rows) == null ? void 0 : _a.length) ? table.getRowModel().rows.map((row) => /* @__PURE__ */ jsx(
       TableRow,
       {
         "data-state": row.getIsSelected() && "selected",
-        children: row.getVisibleCells().map((cell) => /* @__PURE__ */ jsx(TableCell, { children: flexRender(cell.column.columnDef.cell, cell.getContext()) }, cell.id))
+        children: row.getVisibleCells().map((cell) => /* @__PURE__ */ jsx(TableCell, { children: flexRender(
+          cell.column.columnDef.cell,
+          cell.getContext()
+        ) }, cell.id))
       },
       row.id
-    )) : /* @__PURE__ */ jsx(TableRow, { children: /* @__PURE__ */ jsx(TableCell, { colSpan: columns2.length, className: "h-24 text-center", children: "No results." }) }) })
+    )) : /* @__PURE__ */ jsx(TableRow, { children: /* @__PURE__ */ jsx(
+      TableCell,
+      {
+        colSpan: columns2.length,
+        className: "h-24 text-center",
+        children: "No results."
+      }
+    ) }) })
   ] }) });
 }
-const data = [
-  {
-    name: "Superadmin",
-    type: "DEFAULT",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 7
-  },
-  {
-    name: "Merchantadmin",
-    type: "DEFAULT",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 5
-  },
-  {
-    name: "supportadmin",
-    type: "DEFAULT",
-    createdAt: "Jan 1, 2023",
-    status: "Inactive",
-    users: 5
-  },
-  {
-    name: "sales personnel",
-    type: "CUSTOM",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 5
-  },
-  {
-    name: "Deputy sales personnel",
-    type: "CUSTOM",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 5
-  },
-  {
-    name: "Developeradmin",
-    type: "SYSTEM-CUSTOM",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 5
-  },
-  {
-    name: "Developer-basic",
-    type: "SYSTEM-CUSTOM",
-    createdAt: "Jan 1, 2023",
-    status: "active",
-    users: 5
-  }
-];
 const columns = [
   {
     id: "select",
@@ -474,19 +505,25 @@ const columns = [
     enableHiding: false
   }
 ];
-function RoleTable() {
+function RoleTable({
+  roles,
+  isLoading
+}) {
   return /* @__PURE__ */ jsxs("div", { className: "w-full flex flex-col gap-4", children: [
-    /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
+    /* @__PURE__ */ jsxs("div", { className: "flex flex-col md:flex-row md:items-center gap-3 justify-between", children: [
       /* @__PURE__ */ jsx("p", { className: "font-medium text-lg", children: "User Roles" }),
       /* @__PURE__ */ jsxs("button", { className: "flex items-center cursor-pointer hover:shadow-md hover:bg-purple-600 hover:text-white ease-in-out duration-500 gap-2 w-fit bg-white border rounded-lg text-sm font-medium text-nowrap text-primaary-50 px-5 py-2", children: [
         /* @__PURE__ */ jsx(CloudDownload, { size: 14 }),
         "Download all"
       ] })
     ] }),
-    /* @__PURE__ */ jsx(ThreeLineTable, { columns, data })
+    /* @__PURE__ */ jsx(ThreeLineTable, { isLoading, columns, data: roles })
   ] });
 }
-function UserActiveRole() {
+function UserActiveRole({
+  roless,
+  isLoading
+}) {
   const [roles, setRoles] = useState(initialRoles);
   const handleRoleSelect = (roleId) => {
     setRoles(
@@ -602,14 +639,15 @@ function UserActiveRole() {
   ] });
 }
 function RoleSettingsTab() {
+  const { data, isLoading } = useGetAllRoles();
   return /* @__PURE__ */ jsxs("div", { className: "w-full flex flex-col gap-6", children: [
     /* @__PURE__ */ jsxs("div", { className: "flex flex-col w-full pb-3 border-b ", children: [
       /* @__PURE__ */ jsx("p", { className: "font-medium text-lg", children: "User Roles" }),
       /* @__PURE__ */ jsx("p", { className: "text-sm text-gray-400", children: "Update your roles details and information." })
     ] }),
     /* @__PURE__ */ jsx(EmailConnection, {}),
-    /* @__PURE__ */ jsx(UserActiveRole, {}),
-    /* @__PURE__ */ jsx(RoleTable, {})
+    /* @__PURE__ */ jsx(UserActiveRole, { roless: data || [], isLoading }),
+    /* @__PURE__ */ jsx(RoleTable, { roles: data || [], isLoading })
   ] });
 }
 function RoleSettings() {
@@ -622,11 +660,11 @@ function RoleSettings() {
       }
     ),
     /* @__PURE__ */ jsxs(Tabs, { defaultValue: "roles", children: [
-      /* @__PURE__ */ jsx("div", { className: "w-full", children: /* @__PURE__ */ jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsx(TabsList, { className: "inline-flex items-center bg-white rounded-lg overflow-hidden  p-0 border border-gray-200 min-w-fit", children: existingTabs.map((item, index) => /* @__PURE__ */ jsx(
+      /* @__PURE__ */ jsx("div", { className: "w-full", children: /* @__PURE__ */ jsx("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsx(TabsList, { className: "inline-flex items-center bg-white rounded-lg overflow-hidden border  p-0  border-gray-200 min-w-fit", children: existingTabs.map((item, index) => /* @__PURE__ */ jsx(
         TabsTrigger,
         {
           value: item.id,
-          className: ` px-4 py-2 cursor-pointer text-sm w-full font-medium border rounded-none border-gray-200 bg-white transition-all duration-200 whitespace-nowrap data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900 data-[state=active]:shadow-sm data-[state=active]:border data-[state=active]:border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50`,
+          className: `px-4 py-2 cursor-pointer text-sm w-full h-full font-medium border rounded-none border-gray-200 bg-white transition-all duration-200 whitespace-nowrap data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900 data-[state=active]:shadow-sm data-[state=active]:border data-[state=active]:border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50`,
           children: item.label
         },
         index
@@ -648,4 +686,4 @@ function RoleSettings() {
 const SplitComponent = () => /* @__PURE__ */ jsx(RoleSettings, {});
 
 export { SplitComponent as component };
-//# sourceMappingURL=index-CWr1qxk5.mjs.map
+//# sourceMappingURL=index-B_e6MBtf.mjs.map

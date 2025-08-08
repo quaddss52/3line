@@ -31,7 +31,13 @@ export default function SidebarContent() {
             </div>
 
             {item.notifs > 0 && (
-              <div className="px-2 py-1 text-sm bg-grey-100 text-grey-600 group-hover:bg-black bg-gray-100 transition-all duration-500 ease-in-out rounded-full group-hover:text-white transition-all">
+              <div
+                className={` ${
+                  currentPath === item.href
+                    ? "bg-black text-white"
+                    : " text-grey-600 bg-gray-100"
+                } px-2 py-1  text-sm  group-hover:bg-black transition-all duration-500 ease-in-out rounded-full group-hover:text-white transition-all`}
+              >
                 <p>{item.notifs}</p>
               </div>
             )}
