@@ -1,4 +1,6 @@
-export const existingTabs = [
+import { IInitRole, settingTab } from "@/models/rolesettings.model";
+
+export const existingTabs: settingTab[] = [
   { id: "details", label: "My details" },
   { id: "profile", label: "Profile" },
   { id: "password", label: "Password" },
@@ -9,7 +11,7 @@ export const existingTabs = [
   { id: "integrations", label: "Integrations" },
   { id: "api", label: "API" },
 ];
-export const initialRoles = [
+export const initialRoles: IInitRole[] = [
   {
     id: 1,
     name: "Superadmin",

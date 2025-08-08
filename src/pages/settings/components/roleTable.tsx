@@ -1,5 +1,6 @@
 import OverlappingProfiles from "@/components/atoms/overlappingImageProfiles";
 import ThreeLineTable from "@/components/atoms/threelineTable";
+import { IRole } from "@/models/rolesettings.model";
 import { Checkbox } from "@radix-ui/react-checkbox";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Check, CloudDownload } from "lucide-react";
@@ -55,13 +56,7 @@ const data: IRole[] = [
     users: 5,
   },
 ];
-export type IRole = {
-  name: string;
-  type: "DEFAULT" | "CUSTOM" | "SYSTEM-CUSTOM";
-  createdAt: string;
-  status: "active" | "Inactive";
-  users: number;
-};
+
 export const columns: ColumnDef<IRole>[] = [
   {
     id: "select",
