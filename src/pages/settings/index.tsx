@@ -1,6 +1,7 @@
 import Navbar from "@/components/layout/navbar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { existingTabs } from "@/constants/settings";
+import RoleSettingsTab from "./components/roleSettings";
 export default function RoleSettings() {
   return (
     <div className="flex flex-col gap-5 ">
@@ -42,7 +43,7 @@ export default function RoleSettings() {
             <h2 className="text-xl font-semibold mb-4">Plan</h2>
           </TabsContent>
           <TabsContent value="roles" className="">
-            {/* <RoleSettings /> */}
+            <RoleSettingsTab />
           </TabsContent>
           <TabsContent value="notifications" className="">
             <h2 className="text-xl font-semibold mb-4">Notifications</h2>

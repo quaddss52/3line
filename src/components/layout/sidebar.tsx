@@ -10,7 +10,7 @@ export default function Sidebar() {
     setIsDrawerOpen(false);
   };
   return (
-    <div className="h-fit lg:h-full shadow-md flex overflow-y-scroll  lg:flex-col justify-between bg-white gap-5 p-5 lg:p-3 xl:p-5">
+    <div className="h-fit lg:h-full sticky top-0 z-40 shadow-md flex overflow-y-scroll  lg:flex-col justify-between bg-white gap-5 p-5 lg:p-3 xl:p-5">
       <div className="flex w-full justify-between items-center">
         <div className="flex items-center gap-2">
           <Logo />

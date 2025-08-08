@@ -9,3 +9,26 @@ export const existingTabs = [
   { id: "integrations", label: "Integrations" },
   { id: "api", label: "API" },
 ];
+export const initialRoles = [
+  {
+    id: 1,
+    name: "Superadmin",
+    lastActive: "06/2023",
+    isSelected: true,
+    isDefault: true,
+  },
+  {
+    id: 2,
+    name: "Developeradmin",
+    lastActive: "01/2023",
+    isSelected: false,
+    isDefault: false,
+  },
+  {
+    id: 3,
+    name: "Supportadmin",
+    lastActive: "10/2022",
+    isSelected: false,
+    isDefault: false,
+  },
+];
