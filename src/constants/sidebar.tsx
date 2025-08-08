@@ -13,44 +13,44 @@ import {
 
 export const routes = [
   {
-    href: "#",
+    href: "/settings/home",
     pathname: "Home",
     icon: <House />,
     notifs: 0,
   },
   {
-    href: "#",
+    href: "/settings/dashboard",
     pathname: "Dashboard",
     icon: <ChartNoAxesColumn />,
     notifs: 10,
   },
 
   {
-    href: "#",
+    href: "/settings/projects",
     pathname: "Projects",
     icon: <Layers />,
     notifs: 0,
   },
   {
-    href: "#",
+    href: "/settings/task",
     pathname: "Tasks",
     icon: <CheckSquare />,
     notifs: 0,
   },
   {
-    href: "#",
+    href: "/settings/reporting",
     pathname: "Reporting",
     icon: <Flag />,
     notifs: 0,
   },
   {
-    href: "#",
+    href: "/settings/users",
     pathname: "Users",
     icon: <UsersRound />,
     notifs: 0,
   },
   {
-    href: "#",
+    href: "/settings/support",
     pathname: "Support",
     icon: <LifeBuoy />,
     notifs: 0,
