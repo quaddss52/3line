@@ -756,7 +756,7 @@ async function loadVirtualModule(id) {
     case VIRTUAL_MODULES.routeTree:
       return await Promise.resolve().then(() => routeTree_gen);
     case VIRTUAL_MODULES.startManifest:
-      return await import('./_tanstack-start-manifest_v-B_w1Rh4I.mjs');
+      return await import('./_tanstack-start-manifest_v-B_tFLlUY.mjs');
     case VIRTUAL_MODULES.serverFnManifest:
       return await import('./_tanstack-start-server-fn-manifest_v-DtgTK7xl.mjs');
     default:
@@ -1246,7 +1246,7 @@ function isSpecialResponse(err) {
 function isResponse(response) {
   return response instanceof Response;
 }
-const Route$2 = createRootRoute({
+const Route$b = createRootRoute({
   head: () => ({
     meta: [{
       charSet: "utf-8"
@@ -1278,31 +1278,124 @@ function RootDocument({
     ] })
   ] });
 }
-const $$splitComponentImporter$1 = () => import('./_layout-BUHGNU8d.mjs');
-const Route$1 = createFileRoute("/_layout")({
+const $$splitComponentImporter$a = () => import('./_layout-C2n8NJSf.mjs');
+const Route$a = createFileRoute("/_layout")({
+  component: lazyRouteComponent($$splitComponentImporter$a, "component")
+});
+const $$splitComponentImporter$9 = () => import('./index-BqczBchK.mjs');
+const Route$9 = createFileRoute("/_layout/")({
+  component: lazyRouteComponent($$splitComponentImporter$9, "component")
+});
+const $$splitComponentImporter$8 = () => import('./route-h102EW9c.mjs');
+const Route$8 = createFileRoute("/_layout/settings")({
+  component: lazyRouteComponent($$splitComponentImporter$8, "component")
+});
+const $$splitComponentImporter$7 = () => import('./index-CWr1qxk5.mjs');
+const Route$7 = createFileRoute("/_layout/settings/")({
+  component: lazyRouteComponent($$splitComponentImporter$7, "component")
+});
+const $$splitComponentImporter$6 = () => import('./users-BkYTs74p.mjs');
+const Route$6 = createFileRoute("/_layout/settings/users")({
+  component: lazyRouteComponent($$splitComponentImporter$6, "component")
+});
+const $$splitComponentImporter$5 = () => import('./task-CJ7C9lZA.mjs');
+const Route$5 = createFileRoute("/_layout/settings/task")({
+  component: lazyRouteComponent($$splitComponentImporter$5, "component")
+});
+const $$splitComponentImporter$4 = () => import('./support-Dg3aqvY5.mjs');
+const Route$4 = createFileRoute("/_layout/settings/support")({
+  component: lazyRouteComponent($$splitComponentImporter$4, "component")
+});
+const $$splitComponentImporter$3 = () => import('./reporting-DZRHFr1g.mjs');
+const Route$3 = createFileRoute("/_layout/settings/reporting")({
+  component: lazyRouteComponent($$splitComponentImporter$3, "component")
+});
+const $$splitComponentImporter$2 = () => import('./projects-DpmkwIJH.mjs');
+const Route$2 = createFileRoute("/_layout/settings/projects")({
+  component: lazyRouteComponent($$splitComponentImporter$2, "component")
+});
+const $$splitComponentImporter$1 = () => import('./home-h6xBx9Rr.mjs');
+const Route$1 = createFileRoute("/_layout/settings/home")({
   component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-const $$splitComponentImporter = () => import('./route-CWr1qxk5.mjs');
-const Route = createFileRoute("/_layout/settings")({
+const $$splitComponentImporter = () => import('./dashboard-D7YXvF5c.mjs');
+const Route = createFileRoute("/_layout/settings/dashboard")({
   component: lazyRouteComponent($$splitComponentImporter, "component")
 });
-const LayoutRoute = Route$1.update({
+const LayoutRoute = Route$a.update({
   id: "/_layout",
-  getParentRoute: () => Route$2
+  getParentRoute: () => Route$b
 });
-const LayoutSettingsRouteRoute = Route.update({
+const LayoutIndexRoute = Route$9.update({
+  id: "/",
+  path: "/",
+  getParentRoute: () => LayoutRoute
+});
+const LayoutSettingsRouteRoute = Route$8.update({
   id: "/settings",
   path: "/settings",
   getParentRoute: () => LayoutRoute
 });
+const LayoutSettingsIndexRoute = Route$7.update({
+  id: "/",
+  path: "/",
+  getParentRoute: () => LayoutSettingsRouteRoute
+});
+const LayoutSettingsUsersRoute = Route$6.update({
+  id: "/users",
+  path: "/users",
+  getParentRoute: () => LayoutSettingsRouteRoute
+});
+const LayoutSettingsTaskRoute = Route$5.update({
+  id: "/task",
+  path: "/task",
+  getParentRoute: () => LayoutSettingsRouteRoute
+});
+const LayoutSettingsSupportRoute = Route$4.update({
+  id: "/support",
+  path: "/support",
+  getParentRoute: () => LayoutSettingsRouteRoute
+});
+const LayoutSettingsReportingRoute = Route$3.update({
+  id: "/reporting",
+  path: "/reporting",
+  getParentRoute: () => LayoutSettingsRouteRoute
+});
+const LayoutSettingsProjectsRoute = Route$2.update({
+  id: "/projects",
+  path: "/projects",
+  getParentRoute: () => LayoutSettingsRouteRoute
+});
+const LayoutSettingsHomeRoute = Route$1.update({
+  id: "/home",
+  path: "/home",
+  getParentRoute: () => LayoutSettingsRouteRoute
+});
+const LayoutSettingsDashboardRoute = Route.update({
+  id: "/dashboard",
+  path: "/dashboard",
+  getParentRoute: () => LayoutSettingsRouteRoute
+});
+const LayoutSettingsRouteRouteChildren = {
+  LayoutSettingsDashboardRoute,
+  LayoutSettingsHomeRoute,
+  LayoutSettingsProjectsRoute,
+  LayoutSettingsReportingRoute,
+  LayoutSettingsSupportRoute,
+  LayoutSettingsTaskRoute,
+  LayoutSettingsUsersRoute,
+  LayoutSettingsIndexRoute
+};
+const LayoutSettingsRouteRouteWithChildren = LayoutSettingsRouteRoute._addFileChildren(LayoutSettingsRouteRouteChildren);
 const LayoutRouteChildren = {
-  LayoutSettingsRouteRoute
+  LayoutSettingsRouteRoute: LayoutSettingsRouteRouteWithChildren,
+  LayoutIndexRoute
 };
 const LayoutRouteWithChildren = LayoutRoute._addFileChildren(LayoutRouteChildren);
 const rootRouteChildren = {
   LayoutRoute: LayoutRouteWithChildren
 };
-const routeTree = Route$2._addFileChildren(rootRouteChildren)._addFileTypes();
+const routeTree = Route$b._addFileChildren(rootRouteChildren)._addFileTypes();
 const routeTree_gen = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   routeTree

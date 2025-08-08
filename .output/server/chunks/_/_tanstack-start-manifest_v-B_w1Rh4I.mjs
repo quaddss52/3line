@@ -1,4 +1,0 @@
-const tsrStartManifest = () => ({ "routes": { "__root__": { "filePath": "C:/Users/Abdul-Quadri/Desktop/projects/pers/threeline/src/routes/__root.tsx", "children": ["/_layout"], "preloads": ["/assets/main-kTBZ6S8Y.js"], "assets": [] }, "/_layout": { "filePath": "C:/Users/Abdul-Quadri/Desktop/projects/pers/threeline/src/routes/_layout.tsx", "children": ["/_layout/settings"], "assets": [], "preloads": ["/assets/_layout-pCrmIuBT.js", "/assets/utils-BT7BGt1o.js"] }, "/_layout/settings": { "filePath": "C:/Users/Abdul-Quadri/Desktop/projects/pers/threeline/src/routes/_layout/settings/route.tsx", "parent": "/_layout", "assets": [], "preloads": ["/assets/route-DqhA9uuU.js"] } }, "clientEntry": "/assets/main-kTBZ6S8Y.js" });
-
-export { tsrStartManifest };
-//# sourceMappingURL=_tanstack-start-manifest_v-B_w1Rh4I.mjs.map

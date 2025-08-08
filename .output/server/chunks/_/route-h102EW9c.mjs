@@ -378,43 +378,43 @@ function CheckSquare() {
 }
 const routes = [
   {
-    href: "#",
+    href: "/settings/home",
     pathname: "Home",
     icon: /* @__PURE__ */ jsx(House, {}),
     notifs: 0
   },
   {
-    href: "#",
+    href: "/settings/dashboard",
     pathname: "Dashboard",
     icon: /* @__PURE__ */ jsx(ChartNoAxesColumn, {}),
     notifs: 10
   },
   {
-    href: "#",
+    href: "/settings/projects",
     pathname: "Projects",
     icon: /* @__PURE__ */ jsx(Layers, {}),
     notifs: 0
   },
   {
-    href: "#",
+    href: "/settings/task",
     pathname: "Tasks",
     icon: /* @__PURE__ */ jsx(CheckSquare, {}),
     notifs: 0
   },
   {
-    href: "#",
+    href: "/settings/reporting",
     pathname: "Reporting",
     icon: /* @__PURE__ */ jsx(Flag, {}),
     notifs: 0
   },
   {
-    href: "#",
+    href: "/settings/users",
     pathname: "Users",
     icon: /* @__PURE__ */ jsx(UsersRound, {}),
     notifs: 0
   },
   {
-    href: "#",
+    href: "/settings/support",
     pathname: "Support",
     icon: /* @__PURE__ */ jsx(LifeBuoy, {}),
     notifs: 0
@@ -644,12 +644,13 @@ function Sidebar() {
     /* @__PURE__ */ jsx("div", { className: "hidden lg:block w-full h-full", children: /* @__PURE__ */ jsx(SidebarContent, {}) })
   ] });
 }
-const SplitComponent = function RouteComponent() {
-  return /* @__PURE__ */ jsxs("div", { className: "h-screen lg:grid bg-gray-100 lg:grid-cols-[20%_1fr]", children: [
+function RouteComponent() {
+  return /* @__PURE__ */ jsxs("div", { className: "h-screen w-full lg:grid bg-gray-100 lg:grid-cols-[20%_1fr]", children: [
     /* @__PURE__ */ jsx(Sidebar, {}),
     /* @__PURE__ */ jsx("main", { className: " p-5  w-full h-full overflow-y-scroll", children: /* @__PURE__ */ jsx(Outlet, {}) })
   ] });
-};
+}
+const SplitComponent = RouteComponent;
 
 export { SplitComponent as component };
-//# sourceMappingURL=_layout-BUHGNU8d.mjs.map
+//# sourceMappingURL=route-h102EW9c.mjs.map

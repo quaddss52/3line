@@ -648,4 +648,4 @@ function RoleSettings() {
 const SplitComponent = () => /* @__PURE__ */ jsx(RoleSettings, {});
 
 export { SplitComponent as component };
-//# sourceMappingURL=route-CWr1qxk5.mjs.map
+//# sourceMappingURL=index-CWr1qxk5.mjs.map
