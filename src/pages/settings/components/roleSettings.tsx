@@ -1,4 +1,5 @@
 import EmailConnection from "./emailConnection";
+import RoleTable from "./roleTable";
 import UserActiveRole from "./userActiveRole";
 
 export default function RoleSettingsTab() {
@@ -12,6 +13,7 @@ export default function RoleSettingsTab() {
       </div>
       <EmailConnection />
       <UserActiveRole />
+      <RoleTable />
     </div>
   );
 }

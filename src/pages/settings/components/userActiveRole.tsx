@@ -124,7 +124,7 @@ export default function UserActiveRole() {
 
         <button
           onClick={addNewRole}
-          className=" p-2 duration-200 flex items-center justify-center gap-2 text-gray-600 hover:text-purple-600"
+          className="cursor-pointer p-2 duration-200 flex items-center justify-center gap-2 text-gray-600 hover:text-purple-600"
         >
           <Plus className="w-4 h-4" />
           <span className="font-medium text-sm">Add role to user</span>

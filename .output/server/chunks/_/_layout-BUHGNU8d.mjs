@@ -647,9 +647,9 @@ function Sidebar() {
 const SplitComponent = function RouteComponent() {
   return /* @__PURE__ */ jsxs("div", { className: "h-screen lg:grid bg-gray-100 lg:grid-cols-[20%_1fr]", children: [
     /* @__PURE__ */ jsx(Sidebar, {}),
-    /* @__PURE__ */ jsx("main", { className: " p-4  w-full h-full overflow-y-scroll", children: /* @__PURE__ */ jsx(Outlet, {}) })
+    /* @__PURE__ */ jsx("main", { className: " p-5  w-full h-full overflow-y-scroll", children: /* @__PURE__ */ jsx(Outlet, {}) })
   ] });
 };
 
 export { SplitComponent as component };
-//# sourceMappingURL=_layout-CeEdg81i.mjs.map
+//# sourceMappingURL=_layout-BUHGNU8d.mjs.map

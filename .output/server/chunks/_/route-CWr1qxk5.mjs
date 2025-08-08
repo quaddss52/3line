@@ -2,9 +2,11 @@ import { jsx, jsxs } from 'react/jsx-runtime';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { c as cn } from './utils-H80jjgLf.mjs';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
-import { Mail, Check, Users, Plus, CircleIcon } from 'lucide-react';
+import { Mail, Check, Users, Plus, CloudDownload, CircleIcon, ArrowUpDown } from 'lucide-react';
 import { Label } from '@radix-ui/react-label';
 import { useState } from 'react';
+import { useReactTable, getFilteredRowModel, getSortedRowModel, getPaginationRowModel, getCoreRowModel, flexRender } from '@tanstack/react-table';
+import { Checkbox } from '@radix-ui/react-checkbox';
 import 'clsx';
 import 'tailwind-merge';
 
@@ -200,6 +202,290 @@ function EmailConnection() {
     )
   ] });
 }
+function OverlappingProfiles({ amount }) {
+  return /* @__PURE__ */ jsxs("div", { className: "flex items-center", children: [
+    Array.from({ length: Math.min(amount, 5) }).map((_, index) => /* @__PURE__ */ jsx(
+      "div",
+      {
+        className: "h-8 w-8 -ml-3 first:ml-0 rounded-full border-white border-2 overflow-hidden",
+        children: /* @__PURE__ */ jsx(
+          "img",
+          {
+            src: "/images/profile.jpg",
+            alt: `profile ${index + 1}`,
+            className: "w-full h-full object-cover"
+          }
+        )
+      },
+      index
+    )),
+    amount > 5 && /* @__PURE__ */ jsxs("div", { className: "h-8 w-8 -ml-2 rounded-full flex bg-gray-100 text-gray-600 text-xs font-medium items-center justify-center border-white border-2", children: [
+      "+",
+      amount - 5
+    ] })
+  ] });
+}
+function Table({ className, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      "data-slot": "table-container",
+      className: "relative w-full overflow-x-auto",
+      children: /* @__PURE__ */ jsx(
+        "table",
+        {
+          "data-slot": "table",
+          className: cn("w-full caption-bottom text-sm", className),
+          ...props
+        }
+      )
+    }
+  );
+}
+function TableHeader({ className, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "thead",
+    {
+      "data-slot": "table-header",
+      className: cn("[&_tr]:border-b", className),
+      ...props
+    }
+  );
+}
+function TableBody({ className, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "tbody",
+    {
+      "data-slot": "table-body",
+      className: cn("[&_tr:last-child]:border-0", className),
+      ...props
+    }
+  );
+}
+function TableRow({ className, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "tr",
+    {
+      "data-slot": "table-row",
+      className: cn(
+        "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function TableHead({ className, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "th",
+    {
+      "data-slot": "table-head",
+      className: cn(
+        "text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function TableCell({ className, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "td",
+    {
+      "data-slot": "table-cell",
+      className: cn(
+        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        className
+      ),
+      ...props
+    }
+  );
+}
+function ThreeLineTable({
+  data: data2,
+  columns: columns2
+}) {
+  var _a;
+  const [sorting, setSorting] = useState([]);
+  const [columnFilters, setColumnFilters] = useState([]);
+  const [columnVisibility, setColumnVisibility] = useState({});
+  const [rowSelection, setRowSelection] = useState({});
+  const table = useReactTable({
+    data: data2,
+    columns: columns2,
+    onSortingChange: setSorting,
+    onColumnFiltersChange: setColumnFilters,
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
+    onRowSelectionChange: setRowSelection,
+    state: {
+      sorting,
+      columnFilters,
+      columnVisibility,
+      rowSelection
+    }
+  });
+  return /* @__PURE__ */ jsx("div", { className: "overflow-hidden rounded-md border", children: /* @__PURE__ */ jsxs(Table, { className: "bg-white shadow-md", children: [
+    /* @__PURE__ */ jsx(TableHeader, { className: "bg-gray-100", children: table.getHeaderGroups().map((headerGroup) => /* @__PURE__ */ jsx(TableRow, { children: headerGroup.headers.map((header) => {
+      return /* @__PURE__ */ jsx(TableHead, { children: header.isPlaceholder ? null : flexRender(
+        header.column.columnDef.header,
+        header.getContext()
+      ) }, header.id);
+    }) }, headerGroup.id)) }),
+    /* @__PURE__ */ jsx(TableBody, { children: ((_a = table.getRowModel().rows) == null ? void 0 : _a.length) ? table.getRowModel().rows.map((row) => /* @__PURE__ */ jsx(
+      TableRow,
+      {
+        "data-state": row.getIsSelected() && "selected",
+        children: row.getVisibleCells().map((cell) => /* @__PURE__ */ jsx(TableCell, { children: flexRender(cell.column.columnDef.cell, cell.getContext()) }, cell.id))
+      },
+      row.id
+    )) : /* @__PURE__ */ jsx(TableRow, { children: /* @__PURE__ */ jsx(TableCell, { colSpan: columns2.length, className: "h-24 text-center", children: "No results." }) }) })
+  ] }) });
+}
+const data = [
+  {
+    name: "Superadmin",
+    type: "DEFAULT",
+    createdAt: "Jan 1, 2023",
+    status: "active",
+    users: 7
+  },
+  {
+    name: "Merchantadmin",
+    type: "DEFAULT",
+    createdAt: "Jan 1, 2023",
+    status: "active",
+    users: 5
+  },
+  {
+    name: "supportadmin",
+    type: "DEFAULT",
+    createdAt: "Jan 1, 2023",
+    status: "Inactive",
+    users: 5
+  },
+  {
+    name: "sales personnel",
+    type: "CUSTOM",
+    createdAt: "Jan 1, 2023",
+    status: "active",
+    users: 5
+  },
+  {
+    name: "Deputy sales personnel",
+    type: "CUSTOM",
+    createdAt: "Jan 1, 2023",
+    status: "active",
+    users: 5
+  },
+  {
+    name: "Developeradmin",
+    type: "SYSTEM-CUSTOM",
+    createdAt: "Jan 1, 2023",
+    status: "active",
+    users: 5
+  },
+  {
+    name: "Developer-basic",
+    type: "SYSTEM-CUSTOM",
+    createdAt: "Jan 1, 2023",
+    status: "active",
+    users: 5
+  }
+];
+const columns = [
+  {
+    id: "select",
+    header: ({ table }) => /* @__PURE__ */ jsx(
+      Checkbox,
+      {
+        checked: table.getIsAllPageRowsSelected() || table.getIsSomePageRowsSelected() && "indeterminate",
+        onCheckedChange: (value) => table.toggleAllPageRowsSelected(!!value),
+        "aria-label": "Select all"
+      }
+    ),
+    cell: ({ row }) => /* @__PURE__ */ jsx(
+      Checkbox,
+      {
+        checked: row.getIsSelected(),
+        onCheckedChange: (value) => row.toggleSelected(!!value),
+        "aria-label": "Select row"
+      }
+    ),
+    enableSorting: false,
+    enableHiding: false
+  },
+  {
+    accessorKey: "name",
+    header: ({ column }) => /* @__PURE__ */ jsxs(
+      "button",
+      {
+        className: "flex gap-2 items-center",
+        onClick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+        children: [
+          "Name",
+          /* @__PURE__ */ jsx(ArrowUpDown, { size: 12, cursor: "pointer" })
+        ]
+      }
+    ),
+    cell: ({ row }) => /* @__PURE__ */ jsx("div", { className: "capitalize font-medium", children: row.getValue("name") })
+  },
+  {
+    accessorKey: "type",
+    header: "Type",
+    cell: ({ row }) => /* @__PURE__ */ jsx("div", { className: "capitalize text-gray-500", children: row.getValue("type") })
+  },
+  {
+    accessorKey: "createdAt",
+    header: "Data Created",
+    cell: ({ row }) => /* @__PURE__ */ jsx("div", { className: "lowercase text-gray-500", children: row.getValue("createdAt") })
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.getValue("status");
+      return /* @__PURE__ */ jsxs(
+        "div",
+        {
+          className: `capitalize px-3 py-1 flex w-fit rounded-full items-center gap-2 text-xs font-medium ${status == "active" ? "bg-green-50 text-green-600" : "text-white bg-orange-400"} `,
+          children: [
+            status === "active" && /* @__PURE__ */ jsx(Check, { size: 12 }),
+            status
+          ]
+        }
+      );
+    }
+  },
+  {
+    accessorKey: "users",
+    header: "Role Users",
+    cell: ({ row }) => {
+      return /* @__PURE__ */ jsx(OverlappingProfiles, { amount: row.getValue("users") });
+    }
+  },
+  {
+    id: "download",
+    cell: ({ row }) => /* @__PURE__ */ jsx(CloudDownload, { className: "text-gray-500" }),
+    enableSorting: false,
+    enableHiding: false
+  }
+];
+function RoleTable() {
+  return /* @__PURE__ */ jsxs("div", { className: "w-full flex flex-col gap-4", children: [
+    /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between", children: [
+      /* @__PURE__ */ jsx("p", { className: "font-medium text-lg", children: "User Roles" }),
+      /* @__PURE__ */ jsxs("button", { className: "flex items-center cursor-pointer hover:shadow-md hover:bg-purple-600 hover:text-white ease-in-out duration-500 gap-2 w-fit bg-white border rounded-lg text-sm font-medium text-nowrap text-primaary-50 px-5 py-2", children: [
+        /* @__PURE__ */ jsx(CloudDownload, { size: 14 }),
+        "Download all"
+      ] })
+    ] }),
+    /* @__PURE__ */ jsx(ThreeLineTable, { columns, data })
+  ] });
+}
 function UserActiveRole() {
   const [roles, setRoles] = useState(initialRoles);
   const handleRoleSelect = (roleId) => {
@@ -305,7 +591,7 @@ function UserActiveRole() {
         "button",
         {
           onClick: addNewRole,
-          className: " p-2 duration-200 flex items-center justify-center gap-2 text-gray-600 hover:text-purple-600",
+          className: "cursor-pointer p-2 duration-200 flex items-center justify-center gap-2 text-gray-600 hover:text-purple-600",
           children: [
             /* @__PURE__ */ jsx(Plus, { className: "w-4 h-4" }),
             /* @__PURE__ */ jsx("span", { className: "font-medium text-sm", children: "Add role to user" })
@@ -322,7 +608,8 @@ function RoleSettingsTab() {
       /* @__PURE__ */ jsx("p", { className: "text-sm text-gray-400", children: "Update your roles details and information." })
     ] }),
     /* @__PURE__ */ jsx(EmailConnection, {}),
-    /* @__PURE__ */ jsx(UserActiveRole, {})
+    /* @__PURE__ */ jsx(UserActiveRole, {}),
+    /* @__PURE__ */ jsx(RoleTable, {})
   ] });
 }
 function RoleSettings() {
@@ -339,7 +626,7 @@ function RoleSettings() {
         TabsTrigger,
         {
           value: item.id,
-          className: ` px-4 py-2 text-sm w-full font-medium border rounded-none border-gray-200 bg-white transition-all duration-200 whitespace-nowrap data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900 data-[state=active]:shadow-sm data-[state=active]:border data-[state=active]:border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50`,
+          className: ` px-4 py-2 cursor-pointer text-sm w-full font-medium border rounded-none border-gray-200 bg-white transition-all duration-200 whitespace-nowrap data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900 data-[state=active]:shadow-sm data-[state=active]:border data-[state=active]:border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50`,
           children: item.label
         },
         index
@@ -361,4 +648,4 @@ function RoleSettings() {
 const SplitComponent = () => /* @__PURE__ */ jsx(RoleSettings, {});
 
 export { SplitComponent as component };
-//# sourceMappingURL=route-CCvw36Hm.mjs.map
+//# sourceMappingURL=route-CWr1qxk5.mjs.map

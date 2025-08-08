@@ -17,7 +17,7 @@ export default function RoleSettings() {
                 <TabsTrigger
                   key={index}
                   value={item.id}
-                  className={` px-4 py-2 text-sm w-full font-medium border rounded-none border-gray-200 bg-white transition-all duration-200 whitespace-nowrap data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900 data-[state=active]:shadow-sm data-[state=active]:border data-[state=active]:border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50`}
+                  className={` px-4 py-2 cursor-pointer text-sm w-full font-medium border rounded-none border-gray-200 bg-white transition-all duration-200 whitespace-nowrap data-[state=active]:bg-gray-100 data-[state=active]:text-gray-900 data-[state=active]:shadow-sm data-[state=active]:border data-[state=active]:border-gray-200 text-gray-600 hover:text-gray-900 hover:bg-gray-50`}
                 >
                   {item.label}
                 </TabsTrigger>
